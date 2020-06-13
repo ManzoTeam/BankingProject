@@ -2,7 +2,7 @@ package IActors;
 
 import java.util.Collection;
 
-public interface IConto {
+public interface IConto extends IActors {
 
 	public Collection<IMovimento> getMovimenti();
 	

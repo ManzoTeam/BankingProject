@@ -1,6 +1,6 @@
 package IActors;
 
-public interface IMovimento {
+public interface IMovimento extends IActors {
 
 	public double getSommaMovimento();
 	

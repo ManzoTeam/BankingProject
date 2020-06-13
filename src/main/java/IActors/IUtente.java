@@ -2,7 +2,7 @@ package IActors;
 
 import java.util.Collection;
 
-public interface IUtente {
+public interface IUtente extends IActors {
 
 	public boolean modificaEmail(String email);
 	

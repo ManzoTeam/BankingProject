@@ -3,7 +3,7 @@ package IActors;
 import java.util.Collection;
 
 
-public interface IAmministratore {
+public interface IAmministratore extends IActors {
 
 	public boolean modificaEmail();
 	
