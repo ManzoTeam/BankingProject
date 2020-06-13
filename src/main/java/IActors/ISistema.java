@@ -1,7 +1,12 @@
 package IActors;
 
+import java.util.Collection;
+
+
 public interface ISistema {
 
-	public IUtente creaUtente(String mail, String password, Object... params);
+	
 	public IAmministratore creaAmministratore(String mail, String password);
+	
+	public Collection<IAmministratore> getListaAdmin();
 }
