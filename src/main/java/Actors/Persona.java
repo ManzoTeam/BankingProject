@@ -11,8 +11,7 @@ public class Persona extends Utente {
 	private String codiceFiscale;
 	private List<Conto> conti;
 
-	public Persona(String email, String password, String nome, String cognome, LocalDate annoNascita,
-			String codiceFiscale) {
+	public Persona(String email, String password, String nome, String cognome, LocalDate annoNascita, String codiceFiscale) {
 		super(email, password);
 		this.nome = nome;
 		this.cognome = cognome;
