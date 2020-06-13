@@ -14,7 +14,7 @@ public class Database implements IDatabase {
 	static {
 		String s = null;
 		try (
-		  InputStream in = ClassLoader.getSystemResourceAsStream("db.properties.txt");
+		  InputStream in = ClassLoader.getSystemResourceAsStream("db.properties");
 		  BufferedReader reader = new BufferedReader(new InputStreamReader(in));) {
 				s = read_and_initialize_connectionString(reader);
 		}
@@ -23,10 +23,6 @@ public class Database implements IDatabase {
 		}
 		
 		connectionString = s;
-	}
-	
-	public static String getConnectionString() {
-		return connectionString;
 	}
 	
 	@Override
@@ -42,6 +38,11 @@ public class Database implements IDatabase {
 		return null;
 	}
 
+	@Override
+	public boolean init() {
+		
+	}
+	
 	private static String read_and_initialize_connectionString(BufferedReader reader) throws IOException {
 		String l;
 		int i = 1;
@@ -57,11 +58,5 @@ public class Database implements IDatabase {
 		
 		return stringBuilder.toString();
 	}
-	
-	public static void main(String[] args) {
-		Database d = new Database();
-		System.out.println(d.getConnectionString());
-		Connection c = d.getConnection();
-		System.out.print(c!= null);
-	}
+
 }
