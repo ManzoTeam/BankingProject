@@ -1,35 +1,31 @@
 package Actors;
 
+
 import java.sql.SQLException;
 import java.sql.Statement;
-
 import com.mysql.cj.xdevapi.Result;
-
+import IActors.IMovimento;
+import java.util.Date;
 import IActors.IMovimento;
 
 public class Movimento implements IMovimento {
 
 	private int id;
-	private int numeroConto;
 	private double sommaDenaro;
 	private String tipo;
+	private Date dataMovimento;
 	
-	public Movimento() {
-		
+	public Movimento(int id,double sommaDenaro,String tipo,Date dataMovimento) {
+		this.id=id;
+		this.sommaDenaro=sommaDenaro;
+		this.tipo=tipo;
+		this.dataMovimento=dataMovimento;
 	}
 
 	@Override
-	public double getSommaMovimento(){
-		Result rs = null;
-		try (Statement stmt = conn.createStatement() ) {
-			
-		} catch (SQLException e) {
-			
-			e.printStackTrace();
-		}
-		
+	public double getSommaMovimento() {
+		// TODO Auto-generated method stub
 		return 0;
-		
 	}
 
 	@Override
@@ -37,4 +33,7 @@ public class Movimento implements IMovimento {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+
 }
