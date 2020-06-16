@@ -2,5 +2,5 @@ package IActors;
 
 public interface IAzienda extends IUtente, IActors {
 	
-	public void modificaInformazioniAccount();
+	public void modificaInformazioniAccount(String ragioneSociale,String codiceFiscale,String partitaIva,String citta);
 }
