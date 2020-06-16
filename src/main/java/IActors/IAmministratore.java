@@ -9,7 +9,7 @@ public interface IAmministratore extends IActors {
 	
 	public boolean modificaPassword();
 	
-	public IUtente creaUtente(String mail, String password, Object... params);
+	public IUtente creaUtente(String email, String password, Object... params);
 	
 	public Collection<IUtente> getElenco();
 	

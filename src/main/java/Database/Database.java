@@ -40,6 +40,7 @@ public class Database implements IDatabase {
 
 	@Override
 	public boolean init() {
+		return false;
 		
 	}
 	

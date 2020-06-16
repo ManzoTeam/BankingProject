@@ -1,15 +1,23 @@
 package Actors;
 
+<<<<<<< HEAD
+=======
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
+>>>>>>> 1c1e598c9f32ec0c85a755af1f9d1755f9956ef3
 
+import java.sql.SQLException;
+import java.sql.Statement;
+import com.mysql.cj.xdevapi.Result;
+import IActors.IMovimento;
+import java.util.Date;
 import IActors.IMovimento;
 
-public class Movimento implements IMovimento{
+public class Movimento implements IMovimento {
 
 	private int id;
 	private double sommaDenaro;
@@ -101,5 +109,11 @@ public class Movimento implements IMovimento{
 			return null;
 	}
 
+<<<<<<< HEAD
+
+
+}
+=======
 	}
 
+>>>>>>> 1c1e598c9f32ec0c85a755af1f9d1755f9956ef3
