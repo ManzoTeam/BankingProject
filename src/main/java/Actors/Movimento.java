@@ -1,6 +1,13 @@
 package Actors;
 
-public class Movimento {
+import java.sql.SQLException;
+import java.sql.Statement;
+
+import com.mysql.cj.xdevapi.Result;
+
+import IActors.IMovimento;
+
+public class Movimento implements IMovimento {
 
 	private int id;
 	private int numeroConto;
@@ -9,5 +16,25 @@ public class Movimento {
 	
 	public Movimento() {
 		
+	}
+
+	@Override
+	public double getSommaMovimento(){
+		Result rs = null;
+		try (Statement stmt = conn.createStatement() ) {
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
+		return 0;
+		
+	}
+
+	@Override
+	public String getTipoMovimento() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
