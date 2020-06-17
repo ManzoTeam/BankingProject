@@ -22,7 +22,11 @@ public class Azienda extends Utente implements IAzienda{
 
 	public Azienda(String email, String password) {
 		super(email, password);
-		try(Statement stmt =  conn.createStatement()) {
+		this.ragioneSociale=ragioneSociale;
+		this.partitaIva=partitaIva;
+		this.codiceFiscale=codiceFiscale;
+		this.citta=citta;
+		/*try(Statement stmt =  conn.createStatement()) {
 			
 			String query="INSERT INTO Azienda (MAIL,PASSWORD_A)"
 						+ "values (?,?)";
@@ -41,7 +45,7 @@ public class Azienda extends Utente implements IAzienda{
 			System.out.println("SQLException: " + ex.getMessage());
 			System.out.println("SQLState: " + ex.getSQLState());
 			System.out.println("VendorError: " + ex.getErrorCode());
-		}	
+		}	*/
 		
 		
 		
@@ -62,13 +66,13 @@ public class Azienda extends Utente implements IAzienda{
 			ps.setString(4, citta);
 			ps.setString(5, super.getEmail());
 			
+			
 			this.ragioneSociale=ragioneSociale;
 			this.partitaIva=partitaIva;
 			this.codiceFiscale=codiceFiscale;
 			this.citta=citta;
 			
 			
-			
 		}catch (SQLException ex){
 		// handle any errors
 			System.out.println("SQLException: " + ex.getMessage());
@@ -76,70 +80,12 @@ public class Azienda extends Utente implements IAzienda{
 			System.out.println("VendorError: " + ex.getErrorCode());
 		}	
 		
-	}
-
-	@Override
-	public boolean modificaEmail(String email) {
-		try(Statement stmt =  conn.createStatement()) {
-			
-			String query="UPDATE Azienda SET EMAIL=? WHERE MAIL=?";
-			
-			PreparedStatement ps=conn.prepareStatement(query);
-			
-			
-			ps.setString(1, email);
-			ps.setString(2, super.getEmail());
-			
-			super.setEmail(email);
-			
-			
-			return true;
-		}catch (SQLException ex){
-		// handle any errors
-			System.out.println("SQLException: " + ex.getMessage());
-			System.out.println("SQLState: " + ex.getSQLState());
-			System.out.println("VendorError: " + ex.getErrorCode());
-		}	
-		return false;
-	}
-
-	@Override
-	public boolean modificaPassword(String password) {
-		try(Statement stmt =  conn.createStatement()) {
-			
-			String query="UPDATE Azienda SET PASSWORD=? WHERE MAIL=?";
-			
-			PreparedStatement ps=conn.prepareStatement(query);
-			
-			
-			ps.setString(1, password);
-			ps.setString(2, super.getEmail());
-			
-			super.setPassword(password);
-			
-			
-			return true;
-		}catch (SQLException ex){
-		// handle any errors
-			System.out.println("SQLException: " + ex.getMessage());
-			System.out.println("SQLState: " + ex.getSQLState());
-			System.out.println("VendorError: " + ex.getErrorCode());
-		}	
-		return false;
-	}
-
-	@Override
-	public ISessione login() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void logout() {
-		// TODO Auto-generated method stub
 		
 	}
 
+<<<<<<< HEAD
+	
+=======
 	@Override
 	public List<Conto> visualizzaConti() {
 		ResultSet rs = null;
@@ -168,9 +114,10 @@ public class Azienda extends Utente implements IAzienda{
 		
 		
 		return null;
+>>>>>>> c8481ea1909bd1fb83ce03f210a03470062a5547
 	}
 
 	
 
 	
-}
+

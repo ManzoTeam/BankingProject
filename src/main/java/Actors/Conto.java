@@ -22,7 +22,7 @@ public class Conto implements IConto{
 	
 	public Conto(int numeroConto,double saldo,Utente proprietario) {
 		
-		try(Statement stmt =  conn.createStatement()) {
+		/*try(Statement stmt =  conn.createStatement()) {
 			
 			String query="INSERT INTO conto (NUMERO_CONTO,PROPRIETARIO_AZIENDA,PROPRIETARIO_PERSONA_FISICA,SALDO)"
 						+ "values (?,?,?,?)";
@@ -36,10 +36,7 @@ public class Conto implements IConto{
 			else
 				ps.setObject(3, proprietario);
 			
-			this.numeroConto=numeroConto;
-			this.saldo=saldo;
-			this.proprietario=proprietario;
-			listaMovimento=new ArrayList<>();
+			
 			
 			ps.executeQuery();
 			 
@@ -48,8 +45,11 @@ public class Conto implements IConto{
 			System.out.println("SQLException: " + ex.getMessage());
 			System.out.println("SQLState: " + ex.getSQLState());
 			System.out.println("VendorError: " + ex.getErrorCode());
-		}	
-		
+		}	*/
+		this.numeroConto=numeroConto;
+		this.saldo=saldo;
+		this.proprietario=proprietario;
+		listaMovimento=new ArrayList<>();
 		
 	}
 

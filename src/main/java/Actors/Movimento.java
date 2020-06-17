@@ -24,7 +24,7 @@ public class Movimento implements IMovimento {
 	private Date dataMovimento;
 	
 	public Movimento(int id,double sommaDenaro,String tipo,Date dataMovimento,int numeroConto) {
-		try(Statement stmt =  conn.createStatement()) {
+		/*try(Statement stmt =  conn.createStatement()) {
 			
 			String query="INSERT INTO conto (ID_MOVIMENTO,NUMERO_CONTO_MOVIMENTO,SOMMA_DENARO,VERSAMENTE_PRELIEVO,DATA_MOVIMENTO)"
 						+ "values (?,?,?,?,?)";
@@ -37,10 +37,7 @@ public class Movimento implements IMovimento {
 			ps.setString(4, tipo);
 			ps.setDate(5, (java.sql.Date) dataMovimento);
 			
-			this.id=id;
-			this.sommaDenaro=sommaDenaro;
-			this.tipo=tipo;
-			this.dataMovimento=dataMovimento;
+			
 			
 			ps.executeQuery();
 			 
@@ -49,8 +46,12 @@ public class Movimento implements IMovimento {
 			System.out.println("SQLException: " + ex.getMessage());
 			System.out.println("SQLState: " + ex.getSQLState());
 			System.out.println("VendorError: " + ex.getErrorCode());
-		}	
+		}	*/
 		
+		this.id=id;
+		this.sommaDenaro=sommaDenaro;
+		this.tipo=tipo;
+		this.dataMovimento=dataMovimento;
 	}
 
 	@Override
