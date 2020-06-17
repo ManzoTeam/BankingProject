@@ -24,7 +24,7 @@ public class Azienda extends Utente implements IAzienda{
 		super(email, password);
 		try(Statement stmt =  conn.createStatement()) {
 			
-			String query="INSERT INTO Azienda (AIL,PASSWORD_A)"
+			String query="INSERT INTO Azienda (MAIL,PASSWORD_A)"
 						+ "values (?,?)";
 			
 			PreparedStatement ps=conn.prepareStatement(query);
@@ -33,7 +33,7 @@ public class Azienda extends Utente implements IAzienda{
 			ps.setString(1, email);
 			ps.setString(2, password);
 			
-			this.conti = new ArrayList<Conto>();
+			this.conti = new ArrayList<>();
 			ps.executeQuery();
 			 
 		}catch (SQLException ex){
