@@ -83,38 +83,8 @@ public class Azienda extends Utente implements IAzienda{
 		
 	}
 
-<<<<<<< HEAD
+
 	
-=======
-	@Override
-	public List<Conto> visualizzaConti() {
-		ResultSet rs = null;
-		
-		try(Statement stmt =  conn.createStatement()) {
-			
-			String query="SELECT * FROM conto WHERE PROPRIETARIO_AZIENDA=? ";
-			
-			PreparedStatement ps=conn.prepareStatement(query);
-			
-			ps.setString(1,super.getEmail());
-			
-			 rs=ps.executeQuery();
-			 
-			 while(rs.next()) { 
-					conti.add(new Conto(rs.getInt("NUMERO_CONTO"),rs.getDouble("SALDO"),super.getUtente()));
-					}
-		conn.close();
-		return conti;
-		}catch (SQLException ex){
-		// handle any errors
-			System.out.println("SQLException: " + ex.getMessage());
-			System.out.println("SQLState: " + ex.getSQLState());
-			System.out.println("VendorError: " + ex.getErrorCode());
-		}
-		
-		
-		return null;
->>>>>>> c8481ea1909bd1fb83ce03f210a03470062a5547
 	}
 
 	

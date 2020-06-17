@@ -108,15 +108,9 @@ public class Movimento implements IMovimento {
 			
 			return null;
 	}
-<<<<<<< HEAD
-
-
-
 
 }
 
 
-=======
-}
 
->>>>>>> 932a6ddc665f2270119548bd192b04b23bee7acc
+
