@@ -99,7 +99,7 @@ public class Azienda extends Utente implements IAzienda{
 			 rs=ps.executeQuery();
 			 
 			 while(rs.next()) { 
-					conti.add(new Conto(rs.getInt("NUMERO_CONTO"),rs.getDouble("SALDO"),super.getUtente()));
+					conti.add(new Conto(rs.getInt("NUMERO_CONTO"),rs.getDouble("SALDO"));
 					}
 		conn.close();
 		return conti;

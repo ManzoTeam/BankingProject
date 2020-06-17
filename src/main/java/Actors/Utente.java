@@ -127,4 +127,10 @@ public class Utente implements IUtente{
 	public String getEmail() {
 		return email;
 	}
+
+	@Override
+	public List<Conto> visualizzaConti() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
