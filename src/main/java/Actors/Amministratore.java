@@ -90,6 +90,8 @@ public abstract class Amministratore implements IAmministratore {
 			ps1.setString(1, dbString1);
 			ResultSet rs1 = ps1.getResultSet();
 			
+			ps1.executeQuery();
+			ps.executeQuery();
 			
 			if(rs.getObject("email").equals(email) || rs1.getObject("mail").equals(email)) {
 				String insertUtente = "insert into utente(email,password)values("+ email + "'" + "'" + password + ")";
@@ -103,7 +105,7 @@ public abstract class Amministratore implements IAmministratore {
 				System.out.println("Utente non trovato");
 			}
 			
-			ps.executeQuery();
+			
 			stmt.close();
 			
 		}catch(SQLException e) {

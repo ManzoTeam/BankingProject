@@ -67,13 +67,13 @@ public class Conto implements IConto{
 			
 			 rs=ps.executeQuery();
 			 
-<<<<<<< HEAD
+
 			 while(rs.next()) { 
 
 					listaMovimento.add(new Movimento(rs.getInt("ID_MOVIMENTO"),rs.getDouble("SOMMA_DENARO"),rs.getString("VERSAMENTO_PRELIEVO"),rs.getDate("DATA_MOVIMENTO"), numeroConto));
-=======
+
 			 while(rs.next()) {
->>>>>>> 932a6ddc665f2270119548bd192b04b23bee7acc
+
 
 					listaMovimento.add(new Movimento(rs.getInt("ID_MOVIMENTO"),rs.getDouble("SOMMA_DENARO")
 							,rs.getString("VERSAMENTO_PRELIEVO"),rs.getDate("DATA_MOVIMENTO"),numeroConto));
@@ -81,6 +81,7 @@ public class Conto implements IConto{
 					}
 		conn.close();
 		return listaMovimento;
+		}
 		}catch (SQLException ex){
 		// handle any errors
 			System.out.println("SQLException: " + ex.getMessage());
