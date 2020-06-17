@@ -66,9 +66,11 @@ public class Conto implements IConto{
 			ps.setInt(1,numeroConto);
 			
 			 rs=ps.executeQuery();
-			 
+			
 
 			 while(rs.next()) {
+
+
 
 					listaMovimento.add(new Movimento(rs.getInt("ID_MOVIMENTO"),rs.getDouble("SOMMA_DENARO")
 							,rs.getString("VERSAMENTO_PRELIEVO"),rs.getDate("DATA_MOVIMENTO"),numeroConto));
@@ -76,18 +78,18 @@ public class Conto implements IConto{
 					}
 		conn.close();
 		return listaMovimento;
-		}catch (SQLException ex){
+		}
+		catch (SQLException ex){
 		// handle any errors
 			System.out.println("SQLException: " + ex.getMessage());
 			System.out.println("SQLState: " + ex.getSQLState());
 			System.out.println("VendorError: " + ex.getErrorCode());
 		}
 		
-		
 		return null;
 	}
+	
 
-	@Override
 	public double getSaldo() {
 		
 		ResultSet rs = null;
@@ -117,6 +119,7 @@ public class Conto implements IConto{
 	}
 
 	}
+	
 	
 	
 

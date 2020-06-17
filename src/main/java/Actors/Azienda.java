@@ -83,11 +83,7 @@ public class Azienda extends Utente implements IAzienda{
 		
 	}
 
-
 	
-	}
-
-	
-
+}
 	
 
