@@ -83,6 +83,7 @@ public class Azienda extends Utente implements IAzienda{
 		
 	}
 
+<<<<<<< HEAD
 
 	@Override
 	public List<Conto> visualizzaConti() {
@@ -115,6 +116,8 @@ public class Azienda extends Utente implements IAzienda{
 
 	}
 
+=======
+>>>>>>> 66927936188c61ebfc749edbf7fd474734a3bccf
 	
 }
 	
