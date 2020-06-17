@@ -9,5 +9,7 @@ public class Database_tests {
 		
 		Connection c = d.getConnection();
 		assert (c != null);
+		
+		d.init();
 	}
 }
