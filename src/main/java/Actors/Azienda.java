@@ -18,7 +18,7 @@ public class Azienda extends Utente implements IAzienda{
 	private String partitaIva;
 	private String codiceFiscale;
 	private String citta;
-	private List<IConto> conti;
+	private List<Conto> conti;
 
 	public Azienda(String email, String password) {
 		super(email, password);
@@ -141,7 +141,7 @@ public class Azienda extends Utente implements IAzienda{
 	}
 
 	@Override
-	public Collection<IConto> visualizzaConti() {
+	public List<Conto> visualizzaConti() {
 		ResultSet rs = null;
 		
 		try(Statement stmt =  conn.createStatement()) {

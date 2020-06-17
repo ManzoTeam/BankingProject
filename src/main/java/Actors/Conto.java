@@ -68,12 +68,12 @@ public class Conto implements IConto{
 			 rs=ps.executeQuery();
 			 
 			 while(rs.next()) { 
-<<<<<<< HEAD
-					listaMovimento.add(new Movimento(rs.getInt("ID_MOVIMENTO"),rs.getDouble("SOMMA_DENARO"),rs.getString("VERSAMENTO_PRELIEVO"),rs.getDate("DATA_MOVIMENTO")));
-=======
+
+					listaMovimento.add(new Movimento(rs.getInt("ID_MOVIMENTO"),rs.getDouble("SOMMA_DENARO"),rs.getString("VERSAMENTO_PRELIEVO"),rs.getDate("DATA_MOVIMENTO"), numeroConto));
+
 					listaMovimento.add(new Movimento(rs.getInt("ID_MOVIMENTO"),rs.getDouble("SOMMA_DENARO")
 							,rs.getString("VERSAMENTO_PRELIEVO"),rs.getDate("DATA_MOVIMENTO"),numeroConto));
->>>>>>> 1c1e598c9f32ec0c85a755af1f9d1755f9956ef3
+
 					}
 		conn.close();
 		return listaMovimento;
