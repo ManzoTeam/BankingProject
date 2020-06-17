@@ -1,6 +1,9 @@
 package IActors;
 
 import java.util.Collection;
+import java.util.List;
+
+import Actors.Conto;
 
 public interface IUtente extends IActors {
 
@@ -12,6 +15,6 @@ public interface IUtente extends IActors {
 	
 	public void logout();
 	
-	public Collection<IConto> visualizzaConti();
+	public List<Conto> visualizzaConti();
 	
 }
