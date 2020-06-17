@@ -55,7 +55,7 @@ public class Azienda extends Utente implements IAzienda{
 		
 			try(Statement stmt =  conn.createStatement()) {
 			
-			String query="UPDATE Azienda SET RAGIONESOCIALE=?,PARTITAIVA=?,CF=?,CITTA=? WHERE MAIL=? WHERE MAIL=?";
+			String query="UPDATE Azienda SET RAGIONESOCIALE=?,PARTITAIVA=?,CF=?,CITTA=? WHERE MAIL=? ";
 			
 			PreparedStatement ps=conn.prepareStatement(query);
 			
