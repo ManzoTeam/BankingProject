@@ -83,9 +83,7 @@ public class Azienda extends Utente implements IAzienda{
 		
 	}
 
-<<<<<<< HEAD
-	
-=======
+
 	@Override
 	public List<Conto> visualizzaConti() {
 		ResultSet rs = null;
@@ -114,10 +112,10 @@ public class Azienda extends Utente implements IAzienda{
 		
 		
 		return null;
->>>>>>> c8481ea1909bd1fb83ce03f210a03470062a5547
+
 	}
 
 	
-
+}
 	
 

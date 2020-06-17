@@ -18,7 +18,7 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.20</version>
 	   </dependency>
-<<<<<<< HEAD
+
 	   <dependency>
 			<groupId>org.eclipse.jetty</groupId>
 			<artifactId>jetty-annotations</artifactId>
@@ -38,16 +38,13 @@
 			<groupId>org.glassfish.jersey.test-framework.providers</groupId>
 			<artifactId>jersey-test-framework-provider-grizzly2</artifactId>
 			<version>2.31</version>
-		</dependency>
-=======
-	   
+		</dependency> 
 	   <dependency>
 		    <groupId>org.mybatis</groupId>
 		    <artifactId>mybatis</artifactId>
 		    <version>3.5.5</version>
 		</dependency>
 
->>>>>>> 56f8bd39335846b3009361ca78bd41c07775c316
 	</dependencies>
 	<build>
 		<pluginManagement><!-- lock down plugins versions to avoid using Maven 
