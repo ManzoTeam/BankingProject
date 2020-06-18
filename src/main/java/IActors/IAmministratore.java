@@ -2,6 +2,8 @@ package IActors;
 
 import java.util.Collection;
 
+import Actors.Amministratore;
+
 
 public interface IAmministratore extends IActors {
 
@@ -13,9 +15,7 @@ public interface IAmministratore extends IActors {
 	
 	public Collection<IUtente> getElenco();
 	
-	public ISessione login();
-	
-	public void logout();
+	public Amministratore login(String email, String password);
 	
 	public IConto creaConto(int numeroConto,IUtente utente);
 	

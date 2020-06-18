@@ -4,23 +4,34 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Collection;
 
 import IActors.IAmministratore;
+import IActors.IConto;
+import IActors.ISessione;
 import IActors.IUtente;
 
-public abstract class Amministratore implements IAmministratore {
+public class Amministratore implements IAmministratore {
 
 	private final int id;
 	private String email;
 	private String password;
 
+	public Amministratore() {
+		this.id = 0;
+		
+	}
+	
 	public Amministratore(String email, String password) {
 		super();
+		this.id = 0;
 		this.email = email;
 		this.password = password;
-		this.id = 0;
+
 
 	}
+	
+	
 //	
 //	public abstract boolean checkUserRegistration();
 //	
@@ -31,6 +42,31 @@ public abstract class Amministratore implements IAmministratore {
 //	public abstract Conto delContoCliente();
 //	
 //	public abstract Utente viewDati();
+
+	public String getEmail() {
+		return email;
+	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+	public int getId() {
+		return id;
+	}
+
 
 	@Override
 	public boolean modificaEmail() {
@@ -139,5 +175,90 @@ public abstract class Amministratore implements IAmministratore {
 		}
 		return false;
 	}
+	
+	@Override
+	public Amministratore login(String email,String password) {
+		try(Statement stmt = conn.createStatement()){
+			
+			String login = "select * from amministratore where email=? and password=?";
+			PreparedStatement ps = conn.prepareStatement(login);
+			ps.setString(1, email);
+			ps.setString(2, password);
+			ResultSet rs = ps.executeQuery();
+			Amministratore amm = null;
+			if(!rs.equals(null)) {
+				amm = new Amministratore();
+				amm.setEmail(email);
+			}
+			
+			return amm;
+
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return null;
+	}
+
+
+	@Override
+	public Collection<IUtente> getElenco() {
+		
+		try(Statement stmt = conn.createStatement()){
+			
+			String elencoAzienda = "select * from azienda";
+			String elencoUtente = "select * from utente";
+			
+			PreparedStatement ps = conn.prepareStatement(elencoAzienda);
+			PreparedStatement ps1 = conn.prepareStatement(elencoUtente);
+
+			ResultSet rs = ps.executeQuery();
+			ResultSet rs1 = ps1.executeQuery();
+			
+			while(rs.next()) {
+				Azienda az = new Azienda(rs.getString("mail"),rs.getString("password"));
+				Utente ut = new Utente(rs.getString("email"),rs.getString("password"));
+				
+				int cont = stmt.executeUpdate(elencoAzienda);
+				int cont1 = stmt.executeUpdate(elencoUtente);
+				
+			}
+			
+		
+
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+		try {
+			conn.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+
+
+
+	@Override
+	public IConto creaConto(int numeroConto, IUtente utente) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public IAmministratore creaAmministratore(String mail, String password) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 }
