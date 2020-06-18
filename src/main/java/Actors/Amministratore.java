@@ -233,14 +233,12 @@ public class Amministratore implements IAmministratore {
 	public IConto creaConto(int numeroConto, IUtente utente) {
 		try (Statement stmt = conn.createStatement()) {
 			String query;
-<<<<<<< HEAD
+
 			if(utente instanceof Azienda)
 				query= "select * from conto where proprietario_azienda=? group by numero_conto having count()<? ";	
 			else 
 				query= "select * from conto where proprietario_persona_fisica=? group by numero_conto having count()<? ";
-			
-=======
-			String query1;
+						String query1;
 			if(utente instanceof Azienda) {
 				query= "select count(proprietario_azienda) as num_conto from conto where proprietario_azienda=?";
 				query1="insert into conto(numero_conto,proprietario_azienda)values(?,?)";
@@ -249,7 +247,7 @@ public class Amministratore implements IAmministratore {
 				query= "select count(proprietario_persona_fisica) as num_conto from conto where proprietario_persona_fisica=?";
 				query1="insert into conto(numero_conto,proprietario_persona_fisica)values(?,?)";
 			}
->>>>>>> 1d8c428e988a3e79d5764988dcf85be25e02d9e3
+
 			 
 			PreparedStatement ps = conn.prepareStatement(query);
 			ps.setString(1, ((Utente) utente).getEmail());
@@ -258,10 +256,10 @@ public class Amministratore implements IAmministratore {
 			
 			if(rs.equals(null)) 
 				return null;
-<<<<<<< HEAD
+
 			
 			query="insert into conto(numero_conto)values(?)";
-=======
+
 			
 			PreparedStatement ps1;
 			if(utente instanceof Azienda) {
@@ -277,7 +275,7 @@ public class Amministratore implements IAmministratore {
 			
 			ps1.executeQuery(query1);
 			return new Conto(numeroConto,((Azienda)utente));
->>>>>>> 1d8c428e988a3e79d5764988dcf85be25e02d9e3
+
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
