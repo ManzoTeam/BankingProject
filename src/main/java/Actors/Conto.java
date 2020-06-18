@@ -20,7 +20,7 @@ public class Conto implements IConto{
 	private Utente proprietario;
 	private List<IMovimento> listaMovimento;
 	
-	public Conto(int numeroConto,double saldo,Utente proprietario) {
+	public Conto(int numeroConto,double saldo) {
 		
 		/*try(Statement stmt =  conn.createStatement()) {
 			

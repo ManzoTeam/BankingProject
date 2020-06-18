@@ -131,5 +131,8 @@ public class Utente implements IUtente{
 	public void setPassword(String password) {
 		this.password=password;
 	}
+<<<<<<< HEAD
+=======
 
+>>>>>>> 66927936188c61ebfc749edbf7fd474734a3bccf
 }
