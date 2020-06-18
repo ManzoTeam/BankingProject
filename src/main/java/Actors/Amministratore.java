@@ -37,7 +37,7 @@ public abstract class Amministratore implements IAmministratore {
 
 		try (Statement stmt = conn.createStatement()) {
 
-			String modificaEmail = "update amministratore set email='" + email + "'";
+			String modificaEmail = "update amministratore set email=?";
 			String dbString = email;
 			PreparedStatement ps = conn.prepareStatement(modificaEmail);
 			ps.setString(1, dbString);
@@ -56,7 +56,7 @@ public abstract class Amministratore implements IAmministratore {
 		
 		try (Statement stmt = conn.createStatement()) {
 
-			String modificaPsw = "update amministratore set password_admin='" + password + "'";
+			String modificaPsw = "update amministratore set password_admin=?";
 			String dbString = password;
 			PreparedStatement ps = conn.prepareStatement(modificaPsw);
 			ps.setString(1, dbString);
@@ -77,14 +77,14 @@ public abstract class Amministratore implements IAmministratore {
 		
 		try(Statement stmt = conn.createStatement()){
 			
-			String cercaUtente = "select * from cliente where email='"+ email + "'";
+			String cercaUtente = "select * from cliente where email=?";
 			String dbString = email;
 			PreparedStatement ps = conn.prepareStatement(cercaUtente);
 			ps.setString(1, dbString);
 			ResultSet rs = ps.getResultSet();
 			
 			
-			String cercaAzienda = "select * from azienda where mail='" + email +"'";
+			String cercaAzienda = "select * from azienda where mail=?";
 			String dbString1 = email;
 			PreparedStatement ps1 = conn.prepareStatement(cercaAzienda);
 			ps1.setString(1, dbString1);
@@ -119,19 +119,17 @@ public abstract class Amministratore implements IAmministratore {
 	public boolean cancellaConto(int numeroConto) {
 		try(Statement stmt = conn.createStatement()){
 			
-			String cercaConto = "select * from conto where numero_conto='"+numeroConto+"'";
+			String cercaConto = "select * from conto where numero_conto=?";
 			String dbString = String.valueOf(numeroConto);
 			PreparedStatement ps = conn.prepareStatement(cercaConto);
 			ps.setString(1, dbString);
 			ResultSet rs = ps.getResultSet();
 			if(rs.getObject("numero_conto").equals(numeroConto)) {
-				String cancellaConto = "delete from conto where numero_conto="+numeroConto;
+				String cancellaConto = "delete from conto where numero_conto=?";
 				 int cont = stmt.executeUpdate(cancellaConto);
 
 			        if(cont > 0) {
 			        	System.out.println("Cancellazione conto riuscita.");
-			        }else{
-			        	System.out.println("conto non trovato");
 			        }
 			        
 			        stmt.close();
