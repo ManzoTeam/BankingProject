@@ -83,10 +83,10 @@ public class Azienda extends Utente implements IAzienda{
 		
 	}
 
-<<<<<<< HEAD
+
 
 	@Override
-	public List<Conto> visualizzaConti() {
+	public Collection<IConto> visualizzaConti(Utente utente) {
 		ResultSet rs = null;
 		
 		try(Statement stmt =  conn.createStatement()) {
@@ -98,9 +98,9 @@ public class Azienda extends Utente implements IAzienda{
 			ps.setString(1,super.getEmail());
 			
 			 rs=ps.executeQuery();
-			 
+			 List<IConto> conti=new ArrayList<>();
 			 while(rs.next()) { 
-					conti.add(new Conto(rs.getInt("NUMERO_CONTO"),rs.getDouble("SALDO"));
+					conti.add(new Conto(rs.getInt("NUMERO_CONTO"),rs.getDouble("SALDO")));
 					}
 		conn.close();
 		return conti;
@@ -116,9 +116,6 @@ public class Azienda extends Utente implements IAzienda{
 
 	}
 
-=======
->>>>>>> 66927936188c61ebfc749edbf7fd474734a3bccf
-	
 }
 	
 
