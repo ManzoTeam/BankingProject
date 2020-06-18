@@ -128,10 +128,8 @@ public class Utente implements IUtente{
 		return email;
 	}
 
-	@Override
-	public List<Conto> visualizzaConti() {
-		// TODO Auto-generated method stub
-		return null;
+	public void setPassword(String password) {
+		this.password=password;
 	}
 
 }
