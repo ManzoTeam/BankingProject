@@ -8,7 +8,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Persona extends Utente {
+import IActors.IPersona;
+
+public class Persona extends Utente implements IPersona{
 	private String nome;
 	private String cognome;
 	private Date annoNascita;
@@ -57,5 +59,7 @@ public class Persona extends Utente {
 	
 	
 }
+
+	
 
 }
