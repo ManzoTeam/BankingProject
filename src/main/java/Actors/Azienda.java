@@ -55,7 +55,7 @@ public class Azienda extends Utente implements IAzienda{
 		
 			try(Statement stmt =  conn.createStatement()) {
 			
-			String query="UPDATE Azienda SET RAGIONESOCIALE=?,PARTITAIVA=?,CF=?,CITTA=? WHERE MAIL=? WHERE MAIL=?";
+			String query="UPDATE Azienda SET RAGIONESOCIALE=?,PARTITAIVA=?,CF=?,CITTA=? WHERE MAIL=? ";
 			
 			PreparedStatement ps=conn.prepareStatement(query);
 			
@@ -83,8 +83,13 @@ public class Azienda extends Utente implements IAzienda{
 		
 	}
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> e303247dba2021eea0dcb548420a31b27ef7f2a5
 	@Override
-	public List<Conto> visualizzaConti() {
+	public Collection<IConto> visualizzaConti(Utente utente) {
 		ResultSet rs = null;
 		
 		try(Statement stmt =  conn.createStatement()) {
@@ -96,7 +101,7 @@ public class Azienda extends Utente implements IAzienda{
 			ps.setString(1,super.getEmail());
 			
 			 rs=ps.executeQuery();
-			 
+			 List<IConto> conti=new ArrayList<>();
 			 while(rs.next()) { 
 					conti.add(new Conto(rs.getInt("NUMERO_CONTO"),rs.getDouble("SALDO")));
 					}

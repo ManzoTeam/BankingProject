@@ -20,7 +20,7 @@ public interface IUtente extends IActors {
 
 	public Collection<IConto> visualizzaConti(Utente utente);
 
-	public List<Conto> visualizzaConti();
+	
 
 	
 }
