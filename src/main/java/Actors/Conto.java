@@ -20,8 +20,8 @@ public class Conto implements IConto{
 	private Utente proprietario;
 	private List<IMovimento> listaMovimento;
 	
-	public Conto(int numeroConto,double saldo,Utente proprietario) {
-		
+	public Conto(int numeroConto,Utente proprietario) {
+		this(numeroConto,0.0,proprietario);
 		/*try(Statement stmt =  conn.createStatement()) {
 			
 			String query="INSERT INTO conto (NUMERO_CONTO,PROPRIETARIO_AZIENDA,PROPRIETARIO_PERSONA_FISICA,SALDO)"
@@ -46,11 +46,15 @@ public class Conto implements IConto{
 			System.out.println("SQLState: " + ex.getSQLState());
 			System.out.println("VendorError: " + ex.getErrorCode());
 		}	*/
+		
+		
+	}
+	
+	public Conto(int numeroConto,Double saldo,Utente proprietario) {
 		this.numeroConto=numeroConto;
 		this.saldo=saldo;
 		this.proprietario=proprietario;
 		listaMovimento=new ArrayList<>();
-		
 	}
 
 	@Override

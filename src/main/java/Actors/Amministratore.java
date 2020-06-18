@@ -26,7 +26,6 @@ public class Amministratore implements IAmministratore {
 	}
 
 	public Amministratore(String email, String password) {
-		super();
 		this.id = 0;
 		this.email = email;
 		this.password = password;
@@ -65,17 +64,19 @@ public class Amministratore implements IAmministratore {
 	}
 
 	@Override
-	public boolean modificaEmail() {
+	public boolean modificaEmail(String emailModifica) {
 
 		try (Statement stmt = conn.createStatement()) {
 
-			String modificaEmail = "update amministratore set email=?";
+			String modificaEmail = "update amministratore set email=? where email=?";
 			String dbString = email;
 			PreparedStatement ps = conn.prepareStatement(modificaEmail);
 			ps.setString(1, dbString);
+			ps.setString(2, emailModifica);
 			ps.executeQuery();
 
-			stmt.close();
+			//stmt.close();
+			return true; 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -84,60 +85,55 @@ public class Amministratore implements IAmministratore {
 	}
 
 	@Override
-	public boolean modificaPassword() {
+	public boolean modificaPassword(String passwordModificata) {
 
 		try (Statement stmt = conn.createStatement()) {
 
-			String modificaPsw = "update amministratore set password_admin=?";
-			String dbString = password;
+			String modificaPsw = "update amministratore set password_admin=? where email=?";
+			String dbString = passwordModificata;
 			PreparedStatement ps = conn.prepareStatement(modificaPsw);
-			ps.setString(1, dbString);
+			ps.setString(2, dbString);
+			ps.setString(1, passwordModificata );
 			ps.executeQuery();
 
-			stmt.close();
+			//stmt.close();
+			return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
-		return true;
+		return false;
 
 	}
 
 	@Override
-	public IUtente creaUtente(String email, String password, Object... params) {
+	public IUtente creaUtente(Utente utente) {
 
 		try (Statement stmt = conn.createStatement()) {
-
-			String cercaUtente = "select * from cliente where email=?";
-			String dbString = email;
-			PreparedStatement ps = conn.prepareStatement(cercaUtente);
-			ps.setString(1, dbString);
-			ResultSet rs = ps.getResultSet();
-
-			String cercaAzienda = "select * from azienda where mail=?";
-			String dbString1 = email;
-			PreparedStatement ps1 = conn.prepareStatement(cercaAzienda);
-			ps1.setString(1, dbString1);
-			ResultSet rs1 = ps1.getResultSet();
-
-			ps1.executeQuery();
-			ps.executeQuery();
-
-			if (rs.getObject("email").equals(email) || rs1.getObject("mail").equals(email)) {
-				String insertUtente = "insert into utente(email,password)values(" + email + "'" + "'" + password + ")";
-				String insertAzienda = "insert into azienda(mail,password)values(" + email + "'" + "'" + password + ")";
-				int cont = stmt.executeUpdate(insertUtente);
-				int cont1 = stmt.executeUpdate(insertAzienda);
-				if (cont > 0 || cont1 > 0) {
-					System.out.println("Utente aggiunto");
+			
+			String query;
+			PreparedStatement ps;
+			
+			if(utente instanceof Azienda) { 
+				query="insert into azienda(mail,password_a) values (?,?) ";
+				ps=conn.prepareStatement(query);
+				ps.setString(1,utente.getEmail());
+				ps.setString(2, utente.getPassword());
 				}
-			} else {
-				System.out.println("Utente non trovato");
+			else {
+				query="insert into cliente(mail,password_a) values (?,?) ";
+				ps=conn.prepareStatement(query);
+				ps.setString(1,utente.getEmail());
+				ps.setString(2, utente.getPassword());
+				
 			}
+			
+			ps.executeQuery();
+			
+			return utente;
+		}	
 
-			stmt.close();
-
-		} catch (SQLException e) {
+		 catch (SQLException e) {
 			e.printStackTrace();
 		}
 
@@ -236,19 +232,39 @@ public class Amministratore implements IAmministratore {
 	@Override
 	public IConto creaConto(int numeroConto, IUtente utente) {
 		try (Statement stmt = conn.createStatement()) {
-			
-			String conto = "select * from conto where numero_conto=? group by numero_conto having count()=? ";
-			PreparedStatement ps = conn.prepareStatement(conto);
-			ps.setInt(1, numeroConto);
+			String query;
+			String query1;
+			if(utente instanceof Azienda) {
+				query= "select count(proprietario_azienda) as num_conto from conto where proprietario_azienda=?";
+				query1="insert into conto(numero_conto,proprietario_azienda)values(?,?)";
+			}
+			else {
+				query= "select count(proprietario_persona_fisica) as num_conto from conto where proprietario_persona_fisica=?";
+				query1="insert into conto(numero_conto,proprietario_persona_fisica)values(?,?)";
+			}
+			 
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setString(1, ((Utente) utente).getEmail());
 			ps.setInt(2, NUMERO_MAX_CONTI);
 			ResultSet rs = ps.executeQuery();
 			
-			if(!rs.equals(null)) {
-				
-				
-				
+			if(rs.equals(null)) 
+				return null;
+			
+			PreparedStatement ps1;
+			if(utente instanceof Azienda) {
+				ps1=conn.prepareStatement(query1);
+				ps1.setInt(1, numeroConto);
+				ps1.setString(2,((Azienda) utente).getEmail());
+			}
+			else {
+				ps1=conn.prepareStatement(query1);
+				ps1.setInt(1, numeroConto);
+				ps1.setString(2,((Azienda) utente).getEmail());
 			}
 			
+			ps1.executeQuery(query1);
+			return new Conto(numeroConto,((Azienda)utente));
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -258,12 +274,25 @@ public class Amministratore implements IAmministratore {
 
 	@Override
 	public IAmministratore creaAmministratore(String mail, String password) {
+		
 		try (Statement stmt = conn.createStatement()) {
+			
+			String query="insert into amministratore(mail,password_a) values (?,?) ";
+			PreparedStatement ps=conn.prepareStatement(query);
+			ps.setString(1,email);
+			ps.setString(2,password);
+				
+			ps.executeQuery();
+			
+			return new Amministratore(email,password);
+		}	
 
-		} catch (SQLException e) {
+		 catch (SQLException e) {
 			e.printStackTrace();
 		}
+
 		return null;
 	}
+
 
 }

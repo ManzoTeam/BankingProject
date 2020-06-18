@@ -13,10 +13,9 @@ public interface IUtente extends IActors {
 	
 	public boolean modificaPassword(String password);
 	
-	public ISessione login();
+	public ISessione login(String email,String password);
 	
 	public void logout();
-	
 
 	public Collection<IConto> visualizzaConti(Utente utente);
 

@@ -17,7 +17,7 @@ public class Persona extends Utente implements IPersona{
 	private String codiceFiscale;
 	private List<Conto> conti;
 
-	public Persona(String email, String password, String nome, String cognome, Date annoNascita, String codiceFiscale) {
+	public Persona(String email, String password) {
 		super(email, password);
 		this.nome = nome;
 		this.cognome = cognome;
