@@ -15,12 +15,26 @@ import IActors.IUtente;
 public class Utente implements IUtente{
 	
 	
-	private String email; // Chiave primaria
-	private String password;
+	protected String email; // Chiave primaria
+	protected String password;
 	
 	public Utente() {
 
 	}
+
+	
+	
+	public String getPassword() {
+		return password;
+	}
+
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+
 
 	public Utente(String email, String password) {
 		// Controlli Email, Password
@@ -78,16 +92,35 @@ public class Utente implements IUtente{
 	}
 
 	@Override
-	public ISessione login() {
-		// TODO Auto-generated method stub
+	public Utente login() {
+
+		try (Statement stmt = conn.createStatement()) {
+			String login;
+			if(this instanceof Azienda) {
+				login = "select * from azienda where email=? and password=?";
+			}else
+				login = "select * from cliente where email=? and password=?";
+			
+			PreparedStatement ps = conn.prepareStatement(login);
+			ps.setString(1, email);
+			ps.setString(2, password);
+			ResultSet rs = ps.executeQuery();
+			Utente utente = null;
+			if (!rs.equals(null)) {
+				utente = new Utente();
+				utente.setEmail(email);
+			}
+			conn.close();
+			return utente;
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 		return null;
 	}
 
-	@Override
-	public void logout() {
-		// TODO Auto-generated method stub
-		
-	}
+	//Logout utente dirammente nella servlet --> come con amministratore
 
 	@Override
 	public Collection<IConto> visualizzaConti(Utente utente) {

@@ -20,6 +20,7 @@ public class Azienda extends Utente implements IAzienda{
 	private String citta;
 	private List<Conto> conti;
 
+	
 	public Azienda(String email, String password) {
 		super(email, password);
 		this.ragioneSociale=ragioneSociale;
@@ -83,9 +84,7 @@ public class Azienda extends Utente implements IAzienda{
 		
 	}
 
+		
+	}
 
-
-
-}
-	
 

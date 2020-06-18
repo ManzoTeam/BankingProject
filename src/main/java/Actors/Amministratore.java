@@ -236,19 +236,22 @@ public class Amministratore implements IAmministratore {
 	@Override
 	public IConto creaConto(int numeroConto, IUtente utente) {
 		try (Statement stmt = conn.createStatement()) {
+			String query;
+			if(utente instanceof Azienda)
+				query= "select * from conto where proprietario_azienda=? group by numero_conto having count()<? ";	
+			else 
+				query= "select * from conto where proprietario_persona_fisica=? group by numero_conto having count()<? ";
 			
-			String conto = "select * from conto where numero_conto=? group by numero_conto having count()=? ";
-			PreparedStatement ps = conn.prepareStatement(conto);
-			ps.setInt(1, numeroConto);
+			 
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setString(1, ((Utente) utente).getEmail());
 			ps.setInt(2, NUMERO_MAX_CONTI);
 			ResultSet rs = ps.executeQuery();
 			
-			if(!rs.equals(null)) {
-				
-				
-				
-			}
+			if(rs.equals(null)) 
+				return null;
 			
+			query="insert into conto(numero_conto)values(?)";
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
