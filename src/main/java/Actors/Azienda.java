@@ -83,8 +83,6 @@ public class Azienda extends Utente implements IAzienda{
 		
 	}
 
-<<<<<<< HEAD
-
 	@Override
 	public List<Conto> visualizzaConti() {
 		ResultSet rs = null;
@@ -100,7 +98,7 @@ public class Azienda extends Utente implements IAzienda{
 			 rs=ps.executeQuery();
 			 
 			 while(rs.next()) { 
-					conti.add(new Conto(rs.getInt("NUMERO_CONTO"),rs.getDouble("SALDO"));
+					conti.add(new Conto(rs.getInt("NUMERO_CONTO"),rs.getDouble("SALDO")));
 					}
 		conn.close();
 		return conti;
@@ -116,9 +114,6 @@ public class Azienda extends Utente implements IAzienda{
 
 	}
 
-=======
->>>>>>> 66927936188c61ebfc749edbf7fd474734a3bccf
-	
 }
 	
 

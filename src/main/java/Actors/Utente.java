@@ -110,7 +110,7 @@ public class Utente implements IUtente{
 			 List<IConto> conti=new ArrayList<>();
 			 
 			 while(rs.next()) { 
-					conti.add(new Conto(rs.getInt("NUMERO_CONTO"),rs.getDouble("SALDO"),utente));
+					conti.add(new Conto(rs.getInt("NUMERO_CONTO"),rs.getDouble("SALDO")));
 					}
 			 conn.close();
 			 return conti;
@@ -133,8 +133,5 @@ public class Utente implements IUtente{
 		// TODO Auto-generated method stub
 		return null;
 	}
-<<<<<<< HEAD
-=======
 
->>>>>>> 66927936188c61ebfc749edbf7fd474734a3bccf
 }
