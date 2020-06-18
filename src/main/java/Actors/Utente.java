@@ -40,12 +40,13 @@ public class Utente implements IUtente{
 		// Controlli Email, Password
 		this.email = email;
 		this.password = password;
+		
 	}
 	
 	public boolean modificaEmail(String email) {
 		try(Statement stmt =  conn.createStatement()) {
 			
-			String query="UPDATE Azienda SET EMAIL=? WHERE MAIL=?";
+			String query="UPDATE Azienda SET MAIL=? WHERE MAIL=?";
 			
 			PreparedStatement ps=conn.prepareStatement(query);
 			
@@ -70,7 +71,7 @@ public class Utente implements IUtente{
 	public boolean modificaPassword(String password) {
 		try(Statement stmt =  conn.createStatement()) {
 			
-			String query="UPDATE Azienda SET PASSWORD=? WHERE MAIL=?";
+			String query="UPDATE Azienda SET PASSWORD_A=? WHERE MAIL=?";
 			
 			PreparedStatement ps=conn.prepareStatement(query);
 			
@@ -92,7 +93,37 @@ public class Utente implements IUtente{
 	}
 
 	@Override
+<<<<<<< HEAD
 	public Utente login() {
+=======
+	public ISessione login(String email,String password) {
+		
+		try(Statement stmt =  conn.createStatement()) {
+			String query;
+			query="SELECT * FROM AZIENDA WHERE MAIL=? AND PASSWORD_A=?";
+			PreparedStatement ps=conn.prepareStatement(query);
+			
+			if(ps.equals(null))
+				query="SELECT * FROM CLIENTE WHERE EMAIL=? AND PASSWORD_CLIENTE=? ";
+			
+			ps.setString(1,email);
+			ps.setString(2, password);
+			
+			ps.executeQuery();
+			 
+			
+			 return (ISessione) new Sessione(null, null, null);
+		}catch (SQLException ex){
+		// handle any errors
+			System.out.println("SQLException: " + ex.getMessage());
+			System.out.println("SQLState: " + ex.getSQLState());
+			System.out.println("VendorError: " + ex.getErrorCode());
+		}
+		
+		
+		return null;
+	}
+>>>>>>> 1d8c428e988a3e79d5764988dcf85be25e02d9e3
 
 		try (Statement stmt = conn.createStatement()) {
 			String login;
@@ -164,5 +195,9 @@ public class Utente implements IUtente{
 	public void setPassword(String password) {
 		this.password=password;
 	}
+	public String getPassword() {
+		return password;
+	}
+	
 
 }

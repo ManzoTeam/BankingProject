@@ -3,15 +3,16 @@ package IActors;
 import java.util.Collection;
 
 import Actors.Amministratore;
+import Actors.Utente;
 
 
 public interface IAmministratore extends IActors {
 
-	public boolean modificaEmail();
+	public boolean modificaEmail(String email);
 	
-	public boolean modificaPassword();
+	public boolean modificaPassword(String password);
 	
-	public IUtente creaUtente(String email, String password, Object... params);
+	public IUtente creaUtente(Utente utente);
 	
 	public Collection<IUtente> getElenco();
 	
