@@ -17,8 +17,5 @@ public interface IUtenteDAO extends IActors {
 	public void logout();
 
 	public Collection<IContoDAO> visualizzaConti(Utente utente);
-
-	
-
 	
 }

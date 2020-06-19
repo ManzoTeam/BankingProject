@@ -4,11 +4,11 @@ import java.util.Date;
 import java.util.List;
 
 public class PersonaModel extends UtenteModel {
-	private String nome;
-	private String cognome;
-	private Date annoNascita;
-	private String codiceFiscale;
-	private List<ContoModel> conti;
+	public String nome;
+	public String cognome;
+	public Date annoNascita;
+	public String codiceFiscale;
+	public List<ContoModel> conti;
 
 	public PersonaModel(String email, String password, String nome, String cognome, Date annoNascita, String codiceFiscale, List<ContoModel> conti) {
 		super(email, password);
