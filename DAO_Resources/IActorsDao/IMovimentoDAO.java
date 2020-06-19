@@ -1,6 +1,6 @@
-package IActors;
+package IActorsDao;
 
-public interface IMovimento extends IActors {
+public interface IMovimentoDAO extends IActors {
 
 	public double getSommaMovimento();
 	

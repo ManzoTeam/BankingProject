@@ -1,4 +1,4 @@
-package IActors;
+package IActorsDao;
 
 import java.sql.Connection;
 

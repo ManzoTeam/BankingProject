@@ -1,4 +1,4 @@
-package Actors;
+package ActorsDao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,49 +8,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import IActors.IAzienda;
-import IActors.IConto;
-import IActors.ISessione;
+import IActorsDao.IAziendaDAO;
+import IActorsDao.IContoDAO;
+import IActorsDao.ISessioneDAO;
 
-public class Azienda extends Utente implements IAzienda{
-	
-	private String ragioneSociale;
-	private String partitaIva;
-	private String codiceFiscale;
-	private String citta;
-	private List<Conto> conti;
+public class Azienda extends Utente implements IAziendaDAO{
 
-	
-	public Azienda(String email, String password) {
-		super(email, password);
-		this.ragioneSociale=ragioneSociale;
-		this.partitaIva=partitaIva;
-		this.codiceFiscale=codiceFiscale;
-		this.citta=citta;
-		/*try(Statement stmt =  conn.createStatement()) {
-			
-			String query="INSERT INTO Azienda (MAIL,PASSWORD_A)"
-						+ "values (?,?)";
-			
-			PreparedStatement ps=conn.prepareStatement(query);
-			
-			
-			ps.setString(1, email);
-			ps.setString(2, password);
-			
-			this.conti = new ArrayList<>();
-			ps.executeQuery();
-			 
-		}catch (SQLException ex){
-		// handle any errors
-			System.out.println("SQLException: " + ex.getMessage());
-			System.out.println("SQLState: " + ex.getSQLState());
-			System.out.println("VendorError: " + ex.getErrorCode());
-		}	*/
-		
-		
-		
-	}
 	@Override
 	public void modificaInformazioniAccount(String ragioneSociale,String codiceFiscale,String partitaIva,String citta) {
 		

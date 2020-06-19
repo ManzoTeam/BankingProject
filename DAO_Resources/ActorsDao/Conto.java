@@ -1,4 +1,4 @@
-package Actors;
+package ActorsDao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,53 +9,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import IActors.IConto;
-import IActors.IMovimento;
+import IActorsDAO.IConto;
+import IActorsDAO.IMovimento;
+import IActorsDao.IContoDAO;
 
-
-public class Conto implements IConto{
-
-	private int numeroConto;
-	private double saldo;
-	private Utente proprietario;
-	private List<IMovimento> listaMovimento;
-	
-	public Conto(int numeroConto,Utente proprietario) {
-		this(numeroConto,0.0,proprietario);
-		/*try(Statement stmt =  conn.createStatement()) {
-			
-			String query="INSERT INTO conto (NUMERO_CONTO,PROPRIETARIO_AZIENDA,PROPRIETARIO_PERSONA_FISICA,SALDO)"
-						+ "values (?,?,?,?)";
-			
-			PreparedStatement ps=conn.prepareStatement(query);
-			
-			ps.setInt(1,numeroConto);
-			ps.setDouble(4, saldo);
-			if(!(proprietario instanceof Azienda))
-				ps.setObject(2, proprietario);
-			else
-				ps.setObject(3, proprietario);
-			
-			
-			
-			ps.executeQuery();
-			 
-		}catch (SQLException ex){
-		// handle any errors
-			System.out.println("SQLException: " + ex.getMessage());
-			System.out.println("SQLState: " + ex.getSQLState());
-			System.out.println("VendorError: " + ex.getErrorCode());
-		}	*/
-		
-		
-	}
-	
-	public Conto(int numeroConto,Double saldo,Utente proprietario) {
-		this.numeroConto=numeroConto;
-		this.saldo=saldo;
-		this.proprietario=proprietario;
-		listaMovimento=new ArrayList<>();
-	}
+public class Conto implements IContoDAO{
 
 	@Override
 	public Collection<IMovimento> getMovimenti() {

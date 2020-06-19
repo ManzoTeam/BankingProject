@@ -1,4 +1,4 @@
-package Actors;
+package ActorsDao;
 
 import javax.servlet.http.HttpServletRequest;
 

@@ -1,4 +1,4 @@
-package Actors;
+package ActorsDao;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,43 +8,12 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import IActors.IConto;
-import IActors.ISessione;
-import IActors.IUtente;
+import IActorsDao.IContoDAO;
+import IActorsDao.ISessioneDAO;
+import IActorsDao.IUtenteDAO;
 
-public class Utente implements IUtente{
-	
-	
-	protected String email; // Chiave primaria
-	protected String password;
-	
-	public Utente() {
-
-	}
-	
-	public String getEmail() {
-		return email;
-	}
-
-	public void setPassword(String password) {
-		this.password=password;
-	}
-	public String getPassword() {
-		return password;
-	}
-
-	
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public Utente(String email, String password) {
-		// Controlli Email, Password
-		this.email = email;
-		this.password = password;
+public class Utente implements IUtenteDAO{
 		
-	}
-	
 	public boolean modificaEmail(String email) {
 		try(Statement stmt =  conn.createStatement()) {
 			
@@ -125,7 +94,7 @@ public class Utente implements IUtente{
 	//Logout utente dirammente nella servlet --> come con amministratore
 
 	@Override
-	public Collection<IConto> visualizzaConti(Utente utente) {
+	public Collection<IContoDAO> visualizzaConti(Utente utente) {
 		
 		ResultSet rs = null;
 		
@@ -142,7 +111,7 @@ public class Utente implements IUtente{
 			ps.setString(1,email);
 			
 			 rs=ps.executeQuery();
-			 List<IConto> conti=new ArrayList<>();
+			 List<IContoDAO> conti=new ArrayList<>();
 			 
 			 while(rs.next()) { 
 					conti.add(new Conto(rs.getInt("NUMERO_CONTO"),rs.getDouble("SALDO"),utente));

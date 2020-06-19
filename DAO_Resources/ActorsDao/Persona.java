@@ -1,4 +1,4 @@
-package Actors;
+package ActorsDao;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -8,24 +8,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import IActors.IPersona;
+import IActorsDao.IPersonaDAO;
 
-public class Persona extends Utente implements IPersona{
-	private String nome;
-	private String cognome;
-	private Date annoNascita;
-	private String codiceFiscale;
-	private List<Conto> conti;
-
-	public Persona(String email, String password) {
-		super(email, password);
-		this.nome = nome;
-		this.cognome = cognome;
-		this.annoNascita = annoNascita;
-		this.codiceFiscale = codiceFiscale;
-		this.conti = new ArrayList<Conto>();
-	}
+public class Persona extends Utente implements IPersonaDAO{
 	
+	@Override
 	public void modificaInformazioniAccount(String nome, String cognome,String codiceFiscale,Date annoNascita,String password) {
 		
 		try(Statement stmt =  conn.createStatement()) {

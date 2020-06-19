@@ -1,13 +1,12 @@
-package IActors;
+package IActorsDao;
 
 import java.util.Collection;
 import java.util.List;
 
-import Actors.Conto;
+import ActorsDao.Conto;
+import ActorsDao.Utente;
 
-import Actors.Utente;
-
-public interface IUtente extends IActors {
+public interface IUtenteDAO extends IActors {
 
 	public boolean modificaEmail(String email);
 	
@@ -17,7 +16,7 @@ public interface IUtente extends IActors {
 
 	public void logout();
 
-	public Collection<IConto> visualizzaConti(Utente utente);
+	public Collection<IContoDAO> visualizzaConti(Utente utente);
 
 	
 
