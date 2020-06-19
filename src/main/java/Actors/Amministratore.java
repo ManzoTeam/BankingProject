@@ -151,9 +151,9 @@ public class Amministratore implements IAmministratore {
 
 			if (!rs.equals(null)) {
 				String cancellaConto = "delete from conto where numero_conto=?";
-				PreparedStatement ps1 = conn.prepareStatement(cancellaConto);
-				ps1.setInt(1, numeroConto);
-				ps1.executeQuery();
+				ps = conn.prepareStatement(cancellaConto);
+				ps.setInt(1, numeroConto);
+				ps.executeQuery();
 				System.out.println("Cancellazione conto riuscita.");
 				
 //				stmt.close();
@@ -198,7 +198,7 @@ public class Amministratore implements IAmministratore {
 		try (Statement stmt = conn.createStatement()) {
 
 			String elencoAzienda = "select * from azienda";
-			String elencoUtente = "select * from utente";
+			String elencoUtente = "select * from cliente";
 
 			PreparedStatement ps = conn.prepareStatement(elencoAzienda);
 			PreparedStatement ps1 = conn.prepareStatement(elencoUtente);
@@ -235,11 +235,11 @@ public class Amministratore implements IAmministratore {
 			String query;
 			String query1;
 			if(utente instanceof Azienda) {
-				query= "select count(proprietario_azienda) as num_conto from conto where proprietario_azienda=?";
+				query= "select count(proprietario_azienda) as num_conto from conto where proprietario_azienda<?";
 				query1="insert into conto(numero_conto,proprietario_azienda)values(?,?)";
 			}
 			else {
-				query= "select count(proprietario_persona_fisica) as num_conto from conto where proprietario_persona_fisica=?";
+				query= "select count(proprietario_persona_fisica) as num_conto from conto where proprietario_persona_fisica<?";
 				query1="insert into conto(numero_conto,proprietario_persona_fisica)values(?,?)";
 			}
 
@@ -252,19 +252,18 @@ public class Amministratore implements IAmministratore {
 			if(rs.equals(null)) 
 				return null;
 
-			PreparedStatement ps1;
+			
+			ps=conn.prepareStatement(query1);
 			if(utente instanceof Azienda) {
-				ps1=conn.prepareStatement(query1);
-				ps1.setInt(1, numeroConto);
-				ps1.setString(2,((Azienda) utente).getEmail());
+				ps.setInt(1, numeroConto);
+				ps.setString(2,((Azienda) utente).getEmail());
 			}
 			else {
-				ps1=conn.prepareStatement(query1);
-				ps1.setInt(1, numeroConto);
-				ps1.setString(2,((Azienda) utente).getEmail());
+				ps.setInt(1, numeroConto);
+				ps.setString(2,((Azienda) utente).getEmail());
 			}
 			
-			ps1.executeQuery(query1);
+			ps.executeQuery(query1);
 			return new Conto(numeroConto,((Azienda)utente));
 
 			
