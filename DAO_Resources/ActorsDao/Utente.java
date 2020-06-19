@@ -134,6 +134,12 @@ public class Utente implements IUtenteDAO{
 		
 		
 	}
+
+	@Override
+	public Utente login(String email, String password) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 	
 
 }

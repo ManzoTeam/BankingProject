@@ -2,7 +2,7 @@ package IActorsDao;
 
 public interface IMovimentoDAO extends IActors {
 
-	public double getSommaMovimento();
+	public double getSommaMovimento(int id);
 	
-	public String getTipoMovimento();
+	public String getTipoMovimento(int id);
 }

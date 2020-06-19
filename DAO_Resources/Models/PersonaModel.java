@@ -18,4 +18,6 @@ public class PersonaModel extends UtenteModel {
 		this.codiceFiscale = codiceFiscale;
 		this.conti = conti;
 	}
+	
+
 }

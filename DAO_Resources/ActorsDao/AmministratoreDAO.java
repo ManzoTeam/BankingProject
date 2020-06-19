@@ -96,13 +96,14 @@ public class AmministratoreDAO implements IAmministratoreDAO{
 			ResultSet rs = ps.executeQuery();
 			ResultSet rs1 = ps1.executeQuery();
 
-			List<IUtenteDAO> lista = new ArrayList<>();
+			Collection<UtenteModel> lista = new ArrayList<>();
 
 			while (rs.next() || rs1.next()) {
-				AziendaModel azienda = new AziendaModel(rs.getString("mail"), rs.getString("password"));
+				AziendaModel azienda = new AziendaModel(rs.getString("mail"), rs.getString("password_a"),rs.getString("ragionesociale"),
+						rs.getString("partitaiva"),rs.getString("cf"),rs.getString("citta"),null);
 				UtenteModel utente = new UtenteModel(rs.getString("email"), rs.getString("password"));
-				lista.add(azienda);
-				lista.add(utente);
+				lista.add((UtenteModel) azienda);
+				lista.add((UtenteModel) utente);
 			}
 			return lista;
 
@@ -135,7 +136,42 @@ public class AmministratoreDAO implements IAmministratoreDAO{
 
 	@Override
 	public void creaConto(int numeroConto, IUtenteDAO utente) {
-		// TODO Auto-generated method stub
+		try (Statement stmt = conn.createStatement()) {
+			String query;
+			String query1;
+			if(utente instanceof AziendaDAO) {
+				query= "select count(proprietario_azienda) as num_conto from conto where proprietario_azienda<?";
+				query1="insert into conto(numero_conto,proprietario_azienda)values(?,?)";
+			}
+			else {
+				query= "select count(proprietario_persona_fisica) as num_conto from conto where proprietario_persona_fisica<?";
+				query1="insert into conto(numero_conto,proprietario_persona_fisica)values(?,?)";
+			}
+
+			 
+			PreparedStatement ps = conn.prepareStatement(query);
+			ps.setString(1, ((UtenteModel) utente).email);
+//			ps.setInt(2, NUMERO_MAX_CONTI);
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.equals(null)) 
+				return;
+
+			ps=conn.prepareStatement(query1);
+			if(utente instanceof AziendaDAO) {
+				ps.setInt(1, numeroConto);
+				ps.setString(2,((AziendaModel) utente).email);
+			}
+			else {
+				ps.setInt(1, numeroConto);
+				ps.setString(2,((AziendaModel) utente).email);
+			}
+			
+			ps.executeQuery(query1);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 	}
 
@@ -169,7 +205,21 @@ public class AmministratoreDAO implements IAmministratoreDAO{
 
 	@Override
 	public void creaAmministratore(String mail, String password) {
-		// TODO Auto-generated method stub
+
+		try (Statement stmt = conn.createStatement()) {
+			
+			String query="insert into amministratore(mail,password_a) values (?,?) ";
+			PreparedStatement ps=conn.prepareStatement(query);
+			ps.setString(1,mail);
+			ps.setString(2,password);
+				
+			ps.executeQuery();
+	
+		}	
+
+		 catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 	}
 

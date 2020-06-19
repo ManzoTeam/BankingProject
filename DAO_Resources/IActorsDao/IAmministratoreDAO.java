@@ -2,12 +2,12 @@ package IActorsDao;
 
 import java.util.Collection;
 
-import ActorsDao.Amministratore;
+
 import ActorsDao.Utente;
 import Models.UtenteModel;
 
 
-public interface IAmministratoreDAO extends IActors {
+	public interface IAmministratoreDAO extends IActors {
 
 	public boolean modificaEmail(String email_da_modificare, String nuova_email);
 	
