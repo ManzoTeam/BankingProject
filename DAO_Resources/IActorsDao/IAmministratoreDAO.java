@@ -1,9 +1,6 @@
 package IActorsDao;
 
 import java.util.Collection;
-
-
-import ActorsDao.Utente;
 import Models.UtenteModel;
 
 

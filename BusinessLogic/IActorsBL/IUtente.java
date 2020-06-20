@@ -2,7 +2,7 @@ package IActorsBL;
 
 import java.util.Collection;
 
-import ActorsDao.Utente;
+import ActorsBL.Utente;
 import Models.ContoModel;
 
 public interface IUtente {

@@ -31,7 +31,6 @@ public class Amministratore implements IAmministratore{
 
 	@Override
 	public boolean modificaEmail() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

@@ -3,7 +3,8 @@ package IActorsDao;
 import java.util.Collection;
 import java.util.List;
 
-import ActorsDao.Utente;
+import Models.ContoModel;
+import Models.UtenteModel;
 
 public interface IUtenteDAO extends IActors {
 
@@ -11,10 +12,10 @@ public interface IUtenteDAO extends IActors {
 	
 	public boolean modificaPassword(String password);
 	
-	public Utente login(String email, String password);
+	public UtenteModel login(UtenteModel utente);
 
 //	public void logout();
 
-	public Collection<IContoDAO> visualizzaConti(Utente utente);
+	public Collection<ContoModel> visualizzaConti(UtenteModel utente);
 	
 }
