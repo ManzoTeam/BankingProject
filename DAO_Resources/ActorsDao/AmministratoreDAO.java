@@ -135,11 +135,11 @@ public class AmministratoreDAO implements IAmministratoreDAO{
 	}
 
 	@Override
-	public void creaConto(int numeroConto, IUtenteDAO utente) {
+	public void creaConto(int numeroConto, UtenteModel utente) {
 		try (Statement stmt = conn.createStatement()) {
 			String query;
 			String query1;
-			if(utente instanceof AziendaDAO) {
+			if(utente instanceof AziendaModel) {
 				query= "select count(proprietario_azienda) as num_conto from conto where proprietario_azienda<?";
 				query1="insert into conto(numero_conto,proprietario_azienda)values(?,?)";
 			}
@@ -158,7 +158,7 @@ public class AmministratoreDAO implements IAmministratoreDAO{
 				return;
 
 			ps=conn.prepareStatement(query1);
-			if(utente instanceof AziendaDAO) {
+			if(utente instanceof AziendaModel) {
 				ps.setInt(1, numeroConto);
 				ps.setString(2,((AziendaModel) utente).email);
 			}

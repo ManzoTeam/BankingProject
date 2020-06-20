@@ -16,7 +16,7 @@ import Models.UtenteModel;
 	
 	public boolean login(String email, String password);
 	
-	public void creaConto(int numeroConto,IUtenteDAO utente);
+	public void creaConto(int numeroConto,UtenteModel utente);
 	
 	public boolean cancellaConto(int numeroConto);
 	
